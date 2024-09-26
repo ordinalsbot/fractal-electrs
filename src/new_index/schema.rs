@@ -421,7 +421,8 @@ impl ChainQuery {
             let mut raw = Vec::with_capacity(meta.size as usize);
 
             raw.append(&mut serialize(entry.header()));
-            raw.append(&mut serialize(&VarInt(txids.len() as u64)));
+            // raw.append(&mut serialize(&VarInt(txids.len() as u64)));
+            raw.append(&mut serialize(&(txids.len() as u64)));
 
             for txid in txids {
                 // we don't need to provide the blockhash because we know we're not in light mode

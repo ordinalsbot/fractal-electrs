@@ -18,7 +18,7 @@ pub fn get_pegout_data(
     let pegged_asset_id = network.pegged_asset()?;
     txout.pegout_data().filter(|pegout| {
         pegout.asset == Asset::Explicit(*pegged_asset_id)
-            && pegout.genesis_hash == bitcoin_genesis_hash(parent_network)
+        && pegout.genesis_hash == elements::bitcoin::BlockHash::from_inner(bitcoin_genesis_hash(parent_network).to_inner())
     })
 }
 
